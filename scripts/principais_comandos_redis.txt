@@ -1,0 +1,58 @@
+Redis
+
+ - Utiliza conceito de CHAVE - valor para armazenamento de dados
+ - SET para inserção, GET para recuperação
+ - MSET para inserção múltipla, sempre obedecendo a sintaxe CHAVE - valor: MSET CHAVE valor CHAVE1 valor1 CHAVE2 valor2...
+ - EXISTS CHAVE para verificação de valores no Redis. Retorno 0 ou 1
+ - DEL CHAVE para remover valores
+ - TYPE CHAVE verifica o tipo do valor inserido
+ - EX Segundos, PX milissegundos, NX Configurando para novos valores, XX Configurando para valores existentes. Exemplo: SET 1 "ENGENHARIA DE DADOS" EX(Segundos) 60 NX(Novo valor)
+ - EXPIRE CHAVE tempo (Para segundos) ou PEXPIRE (Para milissegundos). Configura se um valor será temporário ou não. Exemplo: Para a CHAVE 1 e o tempo de 60 segundos, o comando é EXPIRE 1 60
+ - PTTL CHAVE mostra o tempo de expiração em milissegundos, TTL CHAVE em segundos e PERSIST CHAVE remove a expiração do registro
+ - GETRANGE CHAVE [Posição inicial] [Posição Final] funciona como substring
+ - GETSET CHAVE [Novo Valor] atualiza registro existentes
+ - MGET [CHAVE] [...] retorna vários registros
+ - STRLEN CHAVE tamanho do registro
+ 
+Redis - HASHes
+ 
+ - HMSET HASH campo valor, campo valor, campo valor... Exemplo: HMSET Cadastro Nome Jose Profissao Engenheiro Cidade "Santa Maria"
+ - HDEL HASH campo. Exemplo HDEL Cadastro Cidade
+ - HGETALL HASH retorna todos os campos de um registro no HASH. Exemplo HGETALL Cadastro
+ - HMGET HASH [Campo] [Campo 2]. HMGET Cadastro Nome Profissao
+ - HVALS HASH retorna todos os valores dos campos de um registro. Por exemplo: HVALS Cadastro
+ - HEXISTS HASH campo. Verifica se um campo existe dentro do HASH. HEXISTS Cadastro. Retorno é 0 ou 1
+ - HLEN HASH, retorna o tamanho de um determinado HASH
+ - HKEYS retorna os valores de CHAVEs (campos) de um HASH
+ 
+Redis - Lists
+
+ - LPUSH LISTA [Valores...] Insere valores para uma LISTA, do início para o fim. Exemplo: LPUSH 4545 SqlServer Oracle Postgres Mysql
+ - RPUSH LISTA [Valores...] Insere valores para uma LISTA, a partir do final. Exemplo: RPUSH 4545 Oracle (A LISTA passar a ser: SqlServer Oracle Postgres Mysql Oracle)
+ - LRANGE LISTA [Posição Inicial] [Posição Final], retorna um intervalo da LISTA, baseando-se no índice (iniciando a partir do 0)
+ - LINSERT LISTA AFTER Valor Novo Valor ou BEFORE, insere valores na LISTA usando como parâmetro um valor já existente. Exemplo LINSERT 4545 AFTER Oracle Firebird
+ - LSET LISTA Indice Valor, Atualiza a LISTA. Exemplo: LSET 4545 1 PostgresSql
+ - LINDEX LISTA Indice, retorna o valor do indice na LISTA
+ - LLEN LISTA, retorna o total de itens na LISTA
+ - LPOP LISTA, remove valores do inicio da LISTA
+ - RPOP LISTA, remove valores do final da LISTA
+ 
+ Redis - Sets
+ 
+ - Coleção não ordenada e não repetida (Não aceita registros repetidos)
+ - SADD SET [Valor1] [Valor2] [...], exemplo: SADD 13 HADOOP SPARK HIVE PIG (Insere 4) SADD 13 FLUME OOZIE SOLR (Insere 3), SADD 13 FLUME (Insere 0)
+ - SMEMBERS SET, retorna todos os registros do SET
+ - SCARD SET, Retorna a quantidade de registros (membros) do SET
+ - SISMEMBER SET VALOR, Retorna verdadeiro ou falso se o membro pertence ao SET (0 ou 1)
+ - SREM CHAVE [Membro1], [Membro2], remove um ou mais membros de um SET
+ - SDIFF [SET1] [SET2], compara os membros entre os SET's, retornando a diferença do primeiro para o segundo
+ - SINTER [SET1] [SET2], faz a intersecção (membros em comum) entre o primeiro SET e o segundo
+ (SETs ORDENADOS)
+ - ZADD SET SCORE MEMBRO, adiciona um membro com SCORE definido. Exemplo: Membro NOSQL no SET 35 com score 0 fica ZADD 35 0 NOSQL
+ - ZCARD SET, conta o número de membros de um SET
+ - ZRANK Retorna o índice de um membro (índice não é SCORE)
+ - ZCOUNT SET [SCORE Inicial] [SCORE final], conta membros dentro de um determinado range de SCORE
+ - ZSCORE SET Membro, retorna o SCORE de determinado membro
+ - ZRANGE SET [SCORE Inicial] [SCORE final], retorna membros dentro de um RANGE de SCORE
+ - ZRANGE SET [SCORE Inicial] [SCORE final] WITHSCORES além de retornar os membros dentro do range, retorna o SCORE de cada um
+ - ZREM SET Membro, remove o membro de um SET. Caso ele não exista, retorna 0
