@@ -1,0 +1,1 @@
+ssh -i "C:\Users\adriano.freitas\.ssh\EngenheiroDeDados.pem" ubuntu@ec2-18-228-14-221.sa-east-1.compute.amazonaws.com
