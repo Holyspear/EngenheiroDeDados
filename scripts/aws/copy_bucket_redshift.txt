@@ -1,6 +1,6 @@
 copy vendedores
 from 's3://cursoredshift1.0/dados/vendedores.csv'
-credentials
+credentials 'aws_access_key_id=xxxxxxx;aws_secret_access_key=xxxxxxx'
 region 'sa-east-1'
 delimiter ';'
 IGNOREHEADER 1
